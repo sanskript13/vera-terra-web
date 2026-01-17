@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'page',
@@ -15,7 +15,7 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: {source: 'title', maxLength: 96},
+      options: { source: 'title', maxLength: 96 },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -23,24 +23,35 @@ export default defineType({
       title: 'Sections',
       type: 'array',
       of: [
-        {type: 'hero'},
-        {type: 'richTextSection'},
-        {type: 'featureGrid'},
-        {type: 'testimonials'},
-        {type: 'faq'},
-        {type: 'cta'},
+        { type: 'hero' },
+        { type: 'richTextSection' },
+        { type: 'featureGrid' },
+        { type: 'testimonials' },
+        { type: 'faq' },
+        { type: 'cta' },
+        { type: 'pricing' },
+        { type: 'imageGallery' },
+        { type: 'logoCloud' },
+        { type: 'contactForm' },
       ],
       validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: 'object',
-      fields: [
-        {name: 'metaTitle', title: 'Meta Title', type: 'string'},
-        {name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 3},
-        {name: 'ogImage', title: 'OG Image', type: 'image', options: {hotspot: true}},
-      ],
+      type: 'seo',
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      slug: 'slug.current',
+    },
+    prepare({ title, slug }) {
+      return {
+        title,
+        subtitle: slug ? `/${slug}` : '',
+      }
+    },
+  },
 })
