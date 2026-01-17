@@ -1,120 +1,182 @@
-import Link from 'next/link'
-import { PortableText } from '@portabletext/react'
-import { sanityFetch } from '@/sanity/lib/client'
-import { MARKETING_PAGE_BY_SLUG_QUERY } from '@/sanity/lib/queries'
+'use client'
 
-type CtaLink = { label?: string; href?: string; variant?: 'primary' | 'secondary' }
+import { HeroSection } from '../components/sections/HeroSection'
+import { FeatureGridSection } from '../components/sections/FeatureGridSection'
+import { CtaSection } from '../components/sections/CtaSection'
 
-function CtaButton({ cta }: { cta?: CtaLink }) {
-  if (!cta?.href || !cta?.label) return null
-  const isExternal = /^https?:\/\//.test(cta.href) || /^mailto:/.test(cta.href) || /^tel:/.test(cta.href)
-
-  const className =
-    cta.variant === 'secondary'
-      ? 'inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium'
-      : 'inline-flex items-center rounded-md bg-black px-4 py-2 text-sm font-medium text-white'
-
-  if (isExternal) {
-    return (
-      <a className={className} href={cta.href}>
-        {cta.label}
-      </a>
-    )
-  }
+export default function HomePage() {
   return (
-    <Link className={className} href={cta.href}>
-      {cta.label}
-    </Link>
+    <main>
+      {/* Hero */}
+      <HeroSection
+        eyebrow="Şanlıurfa'da"
+        headline="Onarıcı tarımda saha danışmanlığı"
+        subheadline="Tarladan başlayan değişim. Koçluk, program ve eğitimle toprak sağlığını güçlendirmeyi, uzun vadeli dayanıklılık inşa etmeyi hedefliyoruz."
+        primaryCta={{ label: 'Tanışalım', href: '/iletisim' }}
+        secondaryCta={{ label: 'Nasıl Çalışıyoruz', href: '/nasil-calisiyoruz' }}
+      />
+
+      {/* Biz Kimiz */}
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-3xl px-6">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground">
+            Sahadan geldik, sahada çalışıyoruz
+          </h2>
+          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+            Onarıcı tarımda saha danışmanlığı yapıyoruz. Toprak sağlığı, su verimliliği ve uzun vadeli dayanıklılık üzerine çalışıyoruz. Tarla ziyaretleriyle başlıyor, veriyle ilerliyoruz. Kimyasal reçete değil, pratik değişim öneriyoruz.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Şanlıurfa ve çevresinde 4 üründe (Antep fıstığı, pamuk, Urfa biberi, buğdaygiller) aktif çalışıyoruz.
+          </p>
+        </div>
+      </section>
+
+      {/* Ne Yapıyoruz */}
+      <FeatureGridSection
+        title="Üç alanda hizmet veriyoruz"
+        subtitle="Sahadan başlayan danışmanlık: birebir koçluk, program desteği ve eğitim. Her tarla farklıdır, her çiftçi farklı yoldan ilerler."
+        items={[
+          {
+            title: 'Saha Koçluğu',
+            text: 'Birebir tarla ziyaretleri. Toprak, su ve pratikleri yerinde değerlendiriyor, adım adım rehberlik ediyoruz.',
+            icon: '🌱'
+          },
+          {
+            title: 'Danışmanlık Programları',
+            text: 'Sezonluk veya yıllık paket programlar. Baseline ölçümden, izleme ve raporlamaya kadar tüm süreç dahil.',
+            icon: '📋'
+          },
+          {
+            title: 'Eğitim & Akademi',
+            text: 'Çiftçi, agronomist ve kooperatif yöneticileri için eğitim. Teorik değil, uygulama odaklı.',
+            icon: '🎓'
+          }
+        ]}
+      />
+
+      {/* Odak: Onarıcı Tarım */}
+      <section className="bg-gradient-to-b from-background to-primary-50/20 py-16 md:py-24">
+        <div className="mx-auto max-w-3xl px-6">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground">
+            Toprak sağlığından başlar, uzun vadeli dayanıklılığa gider
+          </h2>
+          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+            Onarıcı tarım bizim için bir sezonluk çözüm değil, yıllarca süren bir süreç. Toprak organik maddesini artırmayı, su tutma kapasitesini güçlendirmeyi, biyoçeşitliliği desteklemeyi amaçlıyoruz.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Kimyasal doz yazmıyoruz. Pratik değişiklikler öneriyoruz: rotasyon, toprak örtüsü, sulama zamanlaması gibi.
+          </p>
+          <ul className="mt-6 space-y-3">
+            <li className="flex items-start gap-3">
+              <span className="mt-1 text-primary">✓</span>
+              <span className="text-muted-foreground">Toprak sağlığı: organik madde, yapı, su tutma</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-1 text-primary">✓</span>
+              <span className="text-muted-foreground">Su verimliliği: zamanlaması, miktarı, kayıp azaltma</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-1 text-primary">✓</span>
+              <span className="text-muted-foreground">Biyoçeşitlilik: habitat, yararlı organizmaları destekleme</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Çalıştığımız Ürünler */}
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground">
+            Şanlıurfa'da dört üründe çalışıyoruz
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Her ürünün kendi dinamikleri var. Lokal iklim, toprak tipi ve su kaynaklarına göre pratikler uyarlıyoruz.
+          </p>
+
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            <div className="rounded-2xl border-2 border-primary-500/20 bg-gradient-to-br from-primary-50/50 to-background p-6">
+              <h3 className="text-xl font-semibold text-foreground">Antep Fıstığı</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                Uzun dönem toprak sağlığı ve verim dayanıklılığı. Çok yıllık ürün, sabırlı yaklaşım gerektirir.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border-2 border-accent-500/20 bg-gradient-to-br from-accent-50/50 to-background p-6">
+              <h3 className="text-xl font-semibold text-foreground">Pamuk</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                Rotasyon, su verimliliği ve toprak yapısı. Yıllık ürün, hızlı iterasyon mümkün.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border-2 border-primary-500/20 bg-gradient-to-br from-primary-50/50 to-background p-6">
+              <h3 className="text-xl font-semibold text-foreground">Urfa Biberi</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                Organik madde artışı ve sulama optimizasyonu. Lokal ürün, özel pratikler.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border-2 border-accent-500/20 bg-gradient-to-br from-accent-50/50 to-background p-6">
+              <h3 className="text-xl font-semibold text-foreground">Buğdaygiller</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                Minimal işleme, toprak örtüsü, rotasyon. Geniş alan uygulamaları.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Nasıl Çalışıyoruz */}
+      <section className="bg-muted/30 py-16 md:py-24">
+        <div className="mx-auto max-w-3xl px-6">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground">
+            Tarladan başlıyor, veriyle ilerliyoruz
+          </h2>
+          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+            Ön görüşmeyle başlıyoruz: alan profili, hedefler, zorluklar. Sonra tarlaya gidiyoruz: toprak, su, mevcut pratikler. Baseline ölçüm yapıyoruz.
+          </p>
+          <ul className="mt-6 space-y-3">
+            <li className="flex items-start gap-3">
+              <span className="font-semibold text-primary">1.</span>
+              <span className="text-muted-foreground">Ön görüşme ve alan profili</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="font-semibold text-primary">2.</span>
+              <span className="text-muted-foreground">Tarla değerlendirmesi ve baseline</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="font-semibold text-primary">3.</span>
+              <span className="text-muted-foreground">Sezonluk izleme ve rehberlik</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="font-semibold text-primary">4.</span>
+              <span className="text-muted-foreground">Ölçüm, raporlama, bir sonraki sezon</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Kimlerle Çalışıyoruz */}
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-3xl px-6">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground">
+            Küçük çiftçiden kooperatiflere
+          </h2>
+          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+            Küçük ölçekli üreticilerle birebir koçluk yapıyoruz. Orta ölçekli çiftçilerle sezonluk veya yıllık programlar yürütüyoruz. Kooperatif ağlarıyla grup koordinasyonu ve eğitim çalışıyoruz.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Şanlıurfa ve çevresinde <strong className="text-foreground">650+ dekar</strong> alanda aktif olarak çalışıyoruz. Ortalama program süresi <strong className="text-foreground">12 ay</strong>.
+          </p>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <CtaSection
+        title="Tarlanız için ön görüşme yapalım"
+        subtitle="Alan profilinizi dinleyelim, hedeflerinizi anlayalım, uygun yaklaşımı birlikte belirleyelim. 48 saat içinde dönüş yapıyoruz."
+        primaryCta={{ label: 'Tanışalım', href: '/iletisim' }}
+        secondaryCta={{ label: 'Email Gönder', href: 'mailto:hello@verattera.com' }}
+      />
+    </main>
   )
-}
-
-function renderSection(section: any, i: number) {
-  switch (section._type) {
-    case 'mkHeroSection':
-      return (
-        <section key={i} className="py-16">
-          <div className="mx-auto max-w-5xl px-6">
-            {section.eyebrow ? <p className="mb-3 text-sm opacity-70">{section.eyebrow}</p> : null}
-            <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">{section.headline}</h1>
-            {section.subheadline ? <p className="mt-4 max-w-2xl text-base opacity-80">{section.subheadline}</p> : null}
-            <div className="mt-6 flex flex-wrap gap-3">
-              <CtaButton cta={section.primaryCta} />
-              <CtaButton cta={section.secondaryCta} />
-            </div>
-          </div>
-        </section>
-      )
-
-    case 'mkFeatureGridSection':
-      return (
-        <section key={i} className="py-14">
-          <div className="mx-auto max-w-5xl px-6">
-            {section.title ? <h2 className="text-2xl font-semibold">{section.title}</h2> : null}
-            {section.subtitle ? <p className="mt-2 max-w-2xl opacity-80">{section.subtitle}</p> : null}
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {(section.items || []).map((it: any, idx: number) => (
-                <div key={idx} className="rounded-xl border p-5">
-                  <h3 className="font-semibold">{it.title}</h3>
-                  {it.text ? <p className="mt-2 text-sm opacity-80">{it.text}</p> : null}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )
-
-    case 'mkRichTextSection':
-      return (
-        <section key={i} className="py-14">
-          <div className="mx-auto max-w-3xl px-6">
-            {section.title ? <h2 className="text-2xl font-semibold">{section.title}</h2> : null}
-            <div className="prose prose-invert mt-4 max-w-none">
-              <PortableText value={section.content || []} />
-            </div>
-          </div>
-        </section>
-      )
-
-    case 'mkCtaSection':
-      // bazı şema varyantlarında secondaryCta da olabilir; varsa render edelim
-      return (
-        <section key={i} className="py-14">
-          <div className="mx-auto max-w-5xl px-6">
-            <div className="rounded-2xl border p-8">
-              <h2 className="text-2xl font-semibold">{section.title}</h2>
-              {section.text ? <p className="mt-2 max-w-2xl opacity-80">{section.text}</p> : null}
-              <div className="mt-6 flex flex-wrap gap-3">
-                <CtaButton cta={section.cta} />
-                <CtaButton cta={section.secondaryCta} />
-              </div>
-            </div>
-          </div>
-        </section>
-      )
-
-    default:
-      return null
-  }
-}
-
-export default async function HomePage() {
-  const page = await sanityFetch({
-    query: MARKETING_PAGE_BY_SLUG_QUERY,
-    params: { slug: '/' },
-    revalidate: 60,
-    tags: ['marketingPage'],
-  })
-
-  if (!page) {
-    return (
-      <main className="mx-auto max-w-3xl px-6 py-16">
-        <h1 className="text-2xl font-semibold">Home sayfası bulunamadı</h1>
-        <p className="mt-2 opacity-80">
-          Sanity'de <code>marketingPage</code> tipinde slug'ı <code>home</code> olan dokümanı kontrol edin.
-        </p>
-      </main>
-    )
-  }
-
-  return <main>{(page.sections || []).map(renderSection)}</main>
 }

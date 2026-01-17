@@ -7,10 +7,8 @@ export const MARKETING_PAGE_BY_SLUG_QUERY = /* groq */ `
     sections[]{
       _type,
       ...,
-      // nested arrays
-      items[]{...,},
-      // portable text blocks
-      content[]{...,}
+      items[]{...},
+      content[]{...}
     }
   }
 `

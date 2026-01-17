@@ -1,0 +1,59 @@
+{
+    "pages": [
+        {
+            "slug": "nasil-calisiyoruz",
+            "artifact": "nasil-calisiyoruz-detailed.md",
+            "title": "Nasıl Çalışıyoruz"
+        },
+        {
+            "slug": "odak-alanlarimiz",
+            "artifact": "odak-alanlari-detailed.md",
+            "title": "Odak Alanlarımız"
+        },
+        {
+            "slug": "onarici-tarim-yaklasimimiz",
+            "artifact": "onarici-tarim-yaklasimimiz-detailed.md",
+            "title": "Onarıcı Tarım Yaklaşımımız"
+        },
+        {
+            "slug": "calistigimiz-urunler",
+            "artifact": "calistigimiz-urunler-detailed.md",
+            "title": "Çalıştığımız Ürünler"
+        },
+        {
+            "slug": "saha-koclugu",
+            "artifact": "saha-koclugu-detailed.md",
+            "title": "Saha Koçluğu"
+        },
+        {
+            "slug": "danismanlik-programlari",
+            "artifact": "danismanlik-programlari-detailed.md",
+            "title": "Danışmanlık Programları"
+        },
+        {
+            "slug": "egitim-akademi",
+            "artifact": "egitim-akademi-detailed.md",
+            "title": "Eğitim & Akademi"
+        },
+        {
+            "slug": "program-akisi",
+            "artifact": "program-akisi-detailed.md",
+            "title": "Program Akışı"
+        },
+        {
+            "slug": "olcum-izleme",
+            "artifact": "olcum-izleme-detailed.md",
+            "title": "Ölçüm & İzleme"
+        },
+        {
+            "slug": "hakkimizda",
+            "artifact": "hakkimizda-detailed.md",
+            "title": "Hakkımızda"
+        },
+        {
+            "slug": "iletisim",
+            "artifact": "iletisim-detailed.md",
+            "title": "İletişim"
+        }
+    ]
+}
