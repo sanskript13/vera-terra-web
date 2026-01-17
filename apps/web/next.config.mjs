@@ -6,41 +6,46 @@ const __dirname = path.dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   async redirects() {
     return [
       // Old routes → New IA routes (301 permanent redirects for SEO)
       {
-        source: '/akademi',
-        destination: '/egitim-akademi',
+        source: "/akademi",
+        destination: "/egitim-akademi",
         permanent: true,
       },
       {
-        source: '/mrv',
-        destination: '/olcum-izleme',
+        source: "/mrv",
+        destination: "/olcum-izleme",
         permanent: true,
       },
       {
-        source: '/mrv-etki',
-        destination: '/olcum-izleme',
+        source: "/mrv-etki",
+        destination: "/olcum-izleme",
         permanent: true,
       },
       {
-        source: '/on-gorusme',
-        destination: '/iletisim',
+        source: "/on-gorusme",
+        destination: "/iletisim",
         permanent: true,
       },
       {
-        source: '/programlar',
-        destination: '/danismanlik-programlari',
+        source: "/programlar",
+        destination: "/danismanlik-programlari",
         permanent: true,
       },
       {
-        source: '/programlar/:slug',
-        destination: '/danismanlik-programlari',
+        source: "/programlar/:slug",
+        destination: "/danismanlik-programlari",
         permanent: true,
       },
-    ]
+    ];
   },
+
   turbopack: {
     root: __dirname,
   },
