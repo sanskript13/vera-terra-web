@@ -111,3 +111,9 @@ export const pageContent: PageContent = {
         }
     ]
 }
+
+export const homeStats = [
+    { label: "dekar saha deneyimi", value: "650+" },
+    { label: "süreç yaklaşımı", value: "Sezon & yıl boyu" },
+    { label: "ürün odağı", value: "4 ürün" },
+]
