@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import { fadeUp, staggerContainer, buttonHover } from '@/lib/motion-utils'
@@ -48,10 +49,24 @@ export function NewHeroSection({
     secondaryCta = { label: "Nasıl Çalışıyoruz", href: "/nasil-calisiyoruz" }
 }: NewHeroSectionProps) {
     return (
-        <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-background">
-            {/* Background with Gradient and Grain */}
+        <section className="relative min-h-[80vh] md:min-h-[600px] flex flex-col justify-center overflow-hidden bg-background">
+            {/* Background with Image and Overlays */}
             <div className="absolute inset-0 z-0">
-                {/* Subtle Gradient */}
+                {/* TODO: Add actual hero-field.jpg to public/images/ */}
+                {/* Background Image - uncomment when image is available */}
+                {/* <Image
+                    src="/images/hero-field.jpg"
+                    alt="Vera Terra - Şanlıurfa agricultural fields"
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover"
+                /> */}
+
+                {/* Dark overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/30 to-transparent" />
+
+                {/* Subtle gradient for warmth (fallback when no image) */}
                 <div className="absolute inset-0 bg-gradient-to-br from-background via-primary-50/30 to-accent-50/20" />
 
                 {/* Grain Overlay */}
