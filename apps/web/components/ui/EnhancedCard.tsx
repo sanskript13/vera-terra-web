@@ -44,7 +44,7 @@ export function CardGrid({ children, columns = 3, className }: CardGridProps) {
     }
 
     return (
-        <div className={cn('grid', tokens.gap.lg, gridClasses[columns], className)}>
+        <div className={cn('grid', tokens.spacing.gap.lg, gridClasses[columns], className)}>
             {children}
         </div>
     )
