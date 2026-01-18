@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { tokens } from '@/lib/design-tokens'
-import { Card as ShadcnCard } from '@/components/ui/Card'
+import { Card as ShadcnCard } from '@/components/ui/card'
 
 interface EnhancedCardProps {
     children: ReactNode
